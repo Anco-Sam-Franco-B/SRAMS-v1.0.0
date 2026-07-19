@@ -1,11 +1,16 @@
 import express from 'express';
-import { changeUserRole } from '../../controllers/user.controller.js';
 import { authenticate } from '../../middleware/auth.middleware.js';
-import { validateRoleChange, validateUUIDParam } from '../../middleware/validation.js';
+import { isAdmin } from '../../middleware/authorization.js';
+import { getAll, getById, create, update, remove, changeRole, toggleActive, getProfile, updateProfile } from '../../controllers/user.controller.js';
 
-const userRouter = express.Router();
+const router = express.Router();
+router.get('/profile', authenticate, getProfile);
+router.put('/profile', authenticate, updateProfile);
+router.get('/', authenticate, isAdmin, getAll);
+router.get('/:id', authenticate, isAdmin, getById);
+router.post('/', authenticate, isAdmin, create);
+router.put('/:id/role', authenticate, isAdmin, changeRole);
+router.put('/:id/toggle-active', authenticate, isAdmin, toggleActive);
+router.delete('/:id', authenticate, isAdmin, remove);
 
-// Custom route for changing a user's role and handling business logic
-userRouter.put('/:id/role', authenticate, validateUUIDParam, validateRoleChange, changeUserRole);
-
-export default userRouter;
+export default router;

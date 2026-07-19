@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
                 const response = await api.get("/auth/me");
                 setUser(response.data.user);
             } catch (error) {
-                // If 401, they just aren't logged in, which is fine.
                 setUser(null);
             } finally {
                 setLoading(false);
@@ -25,10 +24,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const response = await api.post("/auth/login", {
-            email,
-            password
-        });
+        const response = await api.post("/auth/login", { email, password });
+        const { user } = response.data;
+        setUser(user);
+        return response.data;
+    };
+
+    const loginWithPin = async (admission_no, pin) => {
+        const response = await api.post("/students/login-pin", { admission_no, pin });
         const { user } = response.data;
         setUser(user);
         return response.data;
@@ -54,6 +57,7 @@ export const AuthProvider = ({ children }) => {
                 user,
                 loading,
                 login,
+                loginWithPin,
                 logout,
                 register,
                 setUser

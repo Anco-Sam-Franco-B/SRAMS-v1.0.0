@@ -24,7 +24,7 @@ export default function Subjects() {
 
     const fetchSubjects = async () => {
         try {
-            const response = await api.get('/data/subjects');
+            const response = await api.get('/subjects');
             setSubjects(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch subjects", error);
@@ -36,7 +36,7 @@ export default function Subjects() {
 
     const fetchClasses = async () => {
         try {
-            const response = await api.get('/data/classes');
+            const response = await api.get('/classes');
             setClasses(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch classes", error);
@@ -45,7 +45,7 @@ export default function Subjects() {
 
     const fetchTrades = async () => {
         try {
-            const response = await api.get('/data/trade');
+            const response = await api.get('/trades');
             setTrades(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch trades", error);
@@ -98,7 +98,7 @@ export default function Subjects() {
             if (!payload.class_id) delete payload.class_id;
             if (!payload.weight) delete payload.weight;
             
-            await api.post('/data/subjects', payload);
+            await api.post('/subjects', payload);
             toast.success("Subject created successfully");
             closeModal();
             fetchSubjects();
@@ -119,7 +119,7 @@ export default function Subjects() {
             if (!payload.class_id) delete payload.class_id;
             if (!payload.weight) delete payload.weight;
             
-            await api.put(`/data/subjects/${editingId}`, payload);
+            await api.put(`/subjects/${editingId}`, payload);
             toast.success("Subject updated successfully");
             closeModal();
             fetchSubjects();
@@ -134,7 +134,7 @@ export default function Subjects() {
     const handleDeleteSubject = async (id) => {
         if (!window.confirm('Are you sure you want to delete this subject?')) return;
         try {
-            await api.delete(`/data/subjects/${id}`);
+            await api.delete(`/subjects/${id}`);
             toast.success("Subject deleted successfully");
             fetchSubjects();
         } catch (error) {

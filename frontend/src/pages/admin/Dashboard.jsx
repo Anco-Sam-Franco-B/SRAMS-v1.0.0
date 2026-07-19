@@ -1,86 +1,152 @@
-import React, { useEffect, useState } from 'react';
-import { Users, GraduationCap, BookOpen, Layers, Bell } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import api from '../../api/client';
+import Card from '../../components/ui/Card';
+import Badge from '../../components/ui/Badge';
+import useAuthStore from '../../store/authStore';
+import {
+  Users, GraduationCap, BookOpen, Bell, Calendar,
+  TrendingUp, FileText, BarChart3, Target, Send
+} from 'lucide-react';
 
 export default function Dashboard() {
-  const [statsData, setStatsData] = useState({
-    students: 0,
-    teachers: 0,
-    classes: 0,
-    subjects: 0
+  const { user } = useAuthStore();
+
+  const { data: dashboardData, isLoading } = useQuery({
+    queryKey: ['admin-dashboard'],
+    queryFn: () => api.get('/dashboard/admin').then((r) => r.data.data),
   });
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await api.get('/data/stats');
-        setStatsData(response.data);
-      } catch (error) {
-        console.error("Failed to fetch dashboard stats", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchStats();
-  }, []);
+  const { data: academicYears } = useQuery({
+    queryKey: ['academic-years'],
+    queryFn: () => api.get('/academic-years').then((r) => r.data.data),
+  });
 
-  const stats = [
-    { label: 'Total Students', value: statsData.students, icon: Users, color: 'text-blue-600', bg: 'bg-blue-100' },
-    { label: 'Total Teachers', value: statsData.teachers, icon: GraduationCap, color: 'text-emerald-600', bg: 'bg-emerald-100' },
-    { label: 'Active Classes', value: statsData.classes, icon: Layers, color: 'text-purple-600', bg: 'bg-purple-100' },
-    { label: 'Subjects', value: statsData.subjects, icon: BookOpen, color: 'text-orange-600', bg: 'bg-orange-100' },
+  const { data: terms } = useQuery({
+    queryKey: ['terms'],
+    queryFn: () => api.get('/terms').then((r) => r.data.data),
+  });
+
+  const stats = dashboardData?.stats || {};
+  const recentActivity = dashboardData?.recentActivity || {};
+  const currentYear = academicYears?.find((y) => y.is_current);
+  const currentTerm = terms?.find((t) => t.is_current);
+
+  const statCards = [
+    { label: 'Students', value: stats.students || 0, icon: Users, color: 'bg-blue-500/10 text-blue-600' },
+    { label: 'Teachers', value: stats.teachers || 0, icon: GraduationCap, color: 'bg-emerald-500/10 text-emerald-600' },
+    { label: 'Classes', value: stats.classes || 0, icon: BookOpen, color: 'bg-amber-500/10 text-amber-600' },
+    { label: 'Subjects', value: stats.subjects || 0, icon: FileText, color: 'bg-purple-500/10 text-purple-600' },
   ];
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      {/* Welcome Header */}
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
-          <p className="text-gray-500 text-sm">Welcome back to SRAMS Admin Panel.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Welcome back, {user?.first_name || 'Admin'}</h1>
+          <p className="text-sm text-muted-foreground/70 mt-1">Here's what's happening at your school today</p>
+        </div>
+        <div className="flex items-center gap-2">
+          {currentYear && <Badge variant="info">{currentYear.name}</Badge>}
+          {currentTerm && <Badge variant="success">{currentTerm.name}</Badge>}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, i) => (
-          <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${stat.bg} ${stat.color}`}>
-              <stat.icon className="w-7 h-7" />
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {statCards.map((stat, i) => (
+          <Card key={i} hover className="p-6">
+            <div className="flex items-center gap-4">
+              <div className={`p-3 rounded-xl ${stat.color}`}>
+                <stat.icon className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground/70">{stat.label}</p>
+                <p className="text-2xl font-bold tracking-tight">{isLoading ? '...' : stat.value}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-500 font-medium">{stat.label}</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {loading ? <span className="loading loading-spinner loading-sm"></span> : stat.value}
-              </p>
-            </div>
-          </div>
+          </Card>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-bold text-gray-900">Recent Activities</h2>
-            <button className="text-primary text-sm font-medium hover:underline">View All</button>
-          </div>
-          <div className="space-y-4">
-            <p className="text-gray-500 text-sm italic">No recent activities available from the server.</p>
-          </div>
+      {/* Quick Actions */}
+      <Card className="p-6">
+        <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[
+            { href: '/admin/students', icon: Users, label: 'Add Student' },
+            { href: '/admin/teachers', icon: GraduationCap, label: 'Add Teacher' },
+            { href: '/admin/attendance', icon: Calendar, label: 'Attendance' },
+            { href: '/admin/exam-papers', icon: FileText, label: 'Exam Papers' },
+            { href: '/admin/report-cards', icon: BarChart3, label: 'Report Cards' },
+            { href: '/admin/curriculum', icon: BookOpen, label: 'Curriculum' },
+            { href: '/admin/imihigo', icon: Target, label: 'Imihigo' },
+            { href: '/admin/submissions', icon: Send, label: 'Submissions' },
+          ].map((item, i) => (
+            <a key={i} href={item.href} className="flex items-center gap-3 p-3 rounded-xl border border-border/30 hover:bg-accent/30 transition-all">
+              <item.icon className="h-5 w-5 text-primary/70" />
+              <span className="text-sm font-medium text-foreground/80">{item.label}</span>
+            </a>
+          ))}
         </div>
+      </Card>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-bold text-gray-900">Quick Alerts</h2>
-            <Bell className="w-5 h-5 text-gray-400" />
+      {/* Recent Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Recent Students</h2>
+            <a href="/admin/students" className="text-sm text-primary hover:underline">View all</a>
           </div>
-          <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-orange-50 border border-orange-100">
-              <h4 className="font-semibold text-orange-800 text-sm">System Update</h4>
-              <p className="text-xs text-orange-600 mt-1">APIs successfully connected to the frontend.</p>
+          {recentActivity.students?.length > 0 ? (
+            <div className="space-y-2">
+              {recentActivity.students.map((s) => (
+                <div key={s.id} className="flex items-center gap-3 p-2 rounded-xl hover:bg-accent/30 transition-colors">
+                  <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xs font-medium">
+                    {s.first_name?.[0]}{s.last_name?.[0]}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{s.first_name} {s.last_name}</p>
+                    <p className="text-xs text-muted-foreground/60">{s.admission_no}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          ) : <p className="text-sm text-muted-foreground/50 text-center py-4">No recent students</p>}
+        </Card>
+
+        <Card className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Recent Teachers</h2>
+            <a href="/admin/teachers" className="text-sm text-primary hover:underline">View all</a>
           </div>
-        </div>
+          {recentActivity.teachers?.length > 0 ? (
+            <div className="space-y-2">
+              {recentActivity.teachers.map((t) => (
+                <div key={t.id} className="flex items-center gap-3 p-2 rounded-xl hover:bg-accent/30 transition-colors">
+                  <div className="h-8 w-8 rounded-lg bg-success/10 flex items-center justify-center text-success text-xs font-medium">
+                    {t.first_name?.[0]}{t.last_name?.[0]}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{t.first_name} {t.last_name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : <p className="text-sm text-muted-foreground/50 text-center py-4">No recent teachers</p>}
+        </Card>
       </div>
+
+      {/* System Info */}
+      <Card className="p-6">
+        <h2 className="text-lg font-semibold mb-4">System Information</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div><p className="text-muted-foreground/60">School</p><p className="font-medium">APR Secondary School</p></div>
+          <div><p className="text-muted-foreground/60">District</p><p className="font-medium">Nyarugenge</p></div>
+          <div><p className="text-muted-foreground/60">Province</p><p className="font-medium">Kigali City</p></div>
+          <div><p className="text-muted-foreground/60">Country</p><p className="font-medium">Rwanda</p></div>
+        </div>
+      </Card>
     </div>
   );
 }

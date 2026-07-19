@@ -23,7 +23,7 @@ export default function Terms() {
 
     const fetchTerms = async () => {
         try {
-            const response = await api.get('/data/terms');
+            const response = await api.get('/terms');
             setTerms(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch terms", error);
@@ -35,7 +35,7 @@ export default function Terms() {
 
     const fetchAcademicYears = async () => {
         try {
-            const response = await api.get('/data/academic_years');
+            const response = await api.get('/academic-years');
             setAcademicYears(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch academic years", error);
@@ -87,7 +87,7 @@ export default function Terms() {
             if (!payload.start_date) delete payload.start_date;
             if (!payload.end_date) delete payload.end_date;
             
-            await api.post('/data/terms', payload);
+            await api.post('/terms', payload);
             toast.success("Term created successfully");
             closeModal();
             fetchTerms();
@@ -107,7 +107,7 @@ export default function Terms() {
             if (!payload.start_date) delete payload.start_date;
             if (!payload.end_date) delete payload.end_date;
             
-            await api.put(`/data/terms/${editingId}`, payload);
+            await api.put(`/terms/${editingId}`, payload);
             toast.success("Term updated successfully");
             closeModal();
             fetchTerms();
@@ -122,7 +122,7 @@ export default function Terms() {
     const handleDeleteTerm = async (id) => {
         if (!window.confirm('Are you sure you want to delete this term?')) return;
         try {
-            await api.delete(`/data/terms/${id}`);
+            await api.delete(`/terms/${id}`);
             toast.success("Term deleted successfully");
             fetchTerms();
         } catch (error) {

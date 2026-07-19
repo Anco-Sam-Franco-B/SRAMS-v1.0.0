@@ -1,0 +1,379 @@
+{
+  "roles": [
+    {
+      "id": "db8d8b8f-e8e9-45bb-b0b6-3df172c9a365",
+      "name": "Administrator",
+      "created_at": "2026-07-08T04:54:02.543Z"
+    },
+    {
+      "id": "b729c82c-198a-46a6-b233-47c237d3ed35",
+      "name": "Teacher",
+      "created_at": "2026-07-08T04:54:02.543Z"
+    },
+    {
+      "id": "6c2a89ab-527c-487e-a4c7-4f6f2751ce23",
+      "name": "Student",
+      "created_at": "2026-07-08T04:54:02.543Z"
+    },
+    {
+      "id": "0392edc0-d9c0-4d4f-9385-9ba95a2d9f0e",
+      "name": "Parent",
+      "created_at": "2026-07-08T04:54:02.543Z"
+    },
+    {
+      "id": "36ba43f0-3e9f-4a91-a8b4-2df580c5b289",
+      "name": "Visitor",
+      "created_at": "2026-07-08T06:32:34.117Z"
+    },
+    {
+      "id": "b7f961a9-1b3f-429d-9585-b8eb17b7c85b",
+      "name": "School Administrator",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "6119dd7a-d7d4-4470-9d6d-80af40d1f787",
+      "name": "Head Teacher",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "42407312-99a5-4008-ace3-f1ed41ae8f95",
+      "name": "Deputy Head Teacher",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "5b429dcb-0f16-401a-8535-87e2598370d7",
+      "name": "Director of Studies",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "c0a29682-1a31-428f-9ba0-fc7400cd245d",
+      "name": "Class Teacher",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "dd667e96-b0c8-4127-beca-b15eab84e7ea",
+      "name": "Finance Officer",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "af767508-24db-42e8-9cb1-fa06732e7760",
+      "name": "Registrar",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "d1cda24d-ab30-4968-9fc7-5e3c8b7f4a56",
+      "name": "Librarian",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "1c108991-e91b-42ba-8583-dbe374c90501",
+      "name": "Discipline Officer",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "35a7b318-da38-47fb-8220-dd432b46cae1",
+      "name": "Examination Officer",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    },
+    {
+      "id": "1eb22d98-0fe2-476f-a0d9-66db27e3e732",
+      "name": "System Auditor",
+      "created_at": "2026-07-12T11:13:25.382Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "141c7e2d-fb93-4784-b305-b17969a67189",
+      "role_id": "36ba43f0-3e9f-4a91-a8b4-2df580c5b289",
+      "first_name": "Admin",
+      "last_name": "User",
+      "email": "admin@srams.edu",
+      "password_hash": "$2b$10$NaXYDfLARepxYg0tx0fcxODWa4QdvnwbGPfa981IQH/GUhC7I1TyO",
+      "is_active": false,
+      "created_at": "2026-07-11T10:32:32.185Z",
+      "last_login_at": null,
+      "phone": null,
+      "avatar_url": null,
+      "login_attempts": 0,
+      "locked_until": null,
+      "refresh_token": null,
+      "password_changed_at": null,
+      "email_verified": false,
+      "verification_token": null,
+      "reset_token": null,
+      "reset_token_expires": null,
+      "two_factor_enabled": false,
+      "two_factor_secret": null,
+      "two_factor_method": "email",
+      "linked_student_id": null
+    },
+    {
+      "id": "82124e0c-b2b3-47b8-8023-4d9fa8a51f3d",
+      "role_id": "b729c82c-198a-46a6-b233-47c237d3ed35",
+      "first_name": "Byiringiro",
+      "last_name": "Franco",
+      "email": "ancosamfranco250@gmail.com",
+      "password_hash": "$2b$10$CWHCVxeH9bAljswwRNhy.OUMHnnEJrCZIf0eg1KOFKHFtsUZBTvUW",
+      "is_active": true,
+      "created_at": "2026-07-11T11:00:23.578Z",
+      "last_login_at": "2026-07-12T16:01:56.263Z",
+      "phone": null,
+      "avatar_url": null,
+      "login_attempts": 0,
+      "locked_until": null,
+      "refresh_token": null,
+      "password_changed_at": null,
+      "email_verified": false,
+      "verification_token": null,
+      "reset_token": null,
+      "reset_token_expires": null,
+      "two_factor_enabled": false,
+      "two_factor_secret": null,
+      "two_factor_method": "email",
+      "linked_student_id": null
+    },
+    {
+      "id": "7b273076-4f0e-4b5d-a55e-17b8ea02f989",
+      "role_id": "db8d8b8f-e8e9-45bb-b0b6-3df172c9a365",
+      "first_name": "BYIRINGIRO",
+      "last_name": "Sam Franco",
+      "email": "nbssf250@gmail.com",
+      "password_hash": "$2b$10$HoZzgLNKJe06OiD64paRx.EGGpgT9FOPZSwqcSGTKYUNVnlnsXk2.",
+      "is_active": true,
+      "created_at": "2026-07-08T07:05:19.379Z",
+      "last_login_at": "2026-07-12T16:04:54.365Z",
+      "phone": null,
+      "avatar_url": null,
+      "login_attempts": 0,
+      "locked_until": null,
+      "refresh_token": null,
+      "password_changed_at": null,
+      "email_verified": false,
+      "verification_token": null,
+      "reset_token": null,
+      "reset_token_expires": null,
+      "two_factor_enabled": false,
+      "two_factor_secret": null,
+      "two_factor_method": "email",
+      "linked_student_id": null
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1c395a52-f9d6-418e-b247-230c31dbc5f5",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "user_id": "82124e0c-b2b3-47b8-8023-4d9fa8a51f3d",
+      "employee_no": null,
+      "qualification": null,
+      "specialization": null,
+      "phone": null,
+      "date_joined": null
+    }
+  ],
+  "students": [
+    {
+      "id": "ecf91b88-b208-4103-a68a-dfb9c7efc8b2",
+      "admission_no": "",
+      "class_id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "first_name": "Kamanzi",
+      "last_name": "Eric",
+      "email": "kamanzieric@gmail.com",
+      "is_active": true,
+      "gender": "Male",
+      "country": null,
+      "nationality": "Rwandam",
+      "phone": "+250792411359",
+      "date_of_birth": "2026-07-27T22:00:00.000Z",
+      "created_at": "2026-07-11T11:25:53.488Z",
+      "pin_hash": null,
+      "pin_changed_at": null,
+      "pin_attempts": 0,
+      "pin_locked_until": null,
+      "user_id": null,
+      "photo_url": null,
+      "stream": null,
+      "guardian_name": null,
+      "guardian_phone": null,
+      "guardian_email": null,
+      "guardian_relationship": null,
+      "medical_conditions": null,
+      "blood_group": null,
+      "barcode": null,
+      "qr_code": null,
+      "graduation_date": null,
+      "is_graduated": false
+    },
+    {
+      "id": "829a0379-90aa-4d8d-801d-93c39fb21119",
+      "admission_no": "ADM-2026-0001",
+      "class_id": "a96cc731-74fc-4567-a52c-30decd20b5f5",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "first_name": "Byiringiro",
+      "last_name": "Franco",
+      "email": "ancosamfranco250@gmail.com",
+      "is_active": true,
+      "gender": "Male",
+      "country": null,
+      "nationality": "Rwandan",
+      "phone": "+250792411359",
+      "date_of_birth": "2026-07-20T22:00:00.000Z",
+      "created_at": "2026-07-12T06:04:34.293Z",
+      "pin_hash": "$2b$12$myt5.OgMAqOnADe6RdWByuFcZRDu9BroLnkRI4DN.XXOQq7liJSIS",
+      "pin_changed_at": null,
+      "pin_attempts": 0,
+      "pin_locked_until": null,
+      "user_id": "82124e0c-b2b3-47b8-8023-4d9fa8a51f3d",
+      "photo_url": null,
+      "stream": null,
+      "guardian_name": null,
+      "guardian_phone": null,
+      "guardian_email": null,
+      "guardian_relationship": null,
+      "medical_conditions": null,
+      "blood_group": null,
+      "barcode": null,
+      "qr_code": null,
+      "graduation_date": null,
+      "is_graduated": false
+    }
+  ],
+  "classes": [
+    {
+      "id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "name": "SOD 3",
+      "level": "Level 3",
+      "capacity": 50
+    },
+    {
+      "id": "a96cc731-74fc-4567-a52c-30decd20b5f5",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "name": "SOD 4",
+      "level": "LEVEL 4",
+      "capacity": 50
+    },
+    {
+      "id": "a6c0086c-0ab0-4732-8118-345d178e9090",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "name": "SOD 5 A",
+      "level": "Level 5",
+      "capacity": 70
+    },
+    {
+      "id": "3abba1ce-2243-462a-a7e5-412eaf2dddb7",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "name": "SOD 5 B",
+      "level": "Level 5",
+      "capacity": 70
+    }
+  ],
+  "subjects": [
+    {
+      "id": "ec2a76bd-a854-4454-8711-bebb5d551559",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "class_id": "a96cc731-74fc-4567-a52c-30decd20b5f5",
+      "code": "SWDBS401",
+      "name": "Backend System Design ",
+      "weight": "80.00"
+    },
+    {
+      "id": "086d5c8c-b930-451d-8e99-a4d19375992d",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "class_id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "code": "SWDJF301",
+      "name": "Apply JavaScript",
+      "weight": "100.00"
+    },
+    {
+      "id": "3ad011b4-fe9f-4caf-962a-683d929308d7",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "class_id": "a6c0086c-0ab0-4732-8118-345d178e9090",
+      "code": "SWDND501",
+      "name": "Develop NoSQL Database",
+      "weight": "80.00"
+    }
+  ],
+  "marks": [
+    {
+      "id": "6fb2e002-8158-4240-9887-21108d3393bb",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "teacher_id": null,
+      "assessment_id": "570cce8e-74b8-4ae0-ba6b-565fbefbeb36",
+      "student_id": "ecf91b88-b208-4103-a68a-dfb9c7efc8b2",
+      "marks": "45.00",
+      "status": "draft",
+      "submitted_by": "82124e0c-b2b3-47b8-8023-4d9fa8a51f3d",
+      "submitted_at": "2026-07-12T16:03:52.559Z",
+      "verified_by": null,
+      "verified_at": null,
+      "approved_by": null,
+      "approved_at": null,
+      "head_approved_by": null,
+      "head_approved_at": null,
+      "is_locked": false,
+      "unlocked_by": null,
+      "unlocked_at": null,
+      "competency_id": null
+    },
+    {
+      "id": "ed0648e2-8a46-4187-b5c3-b03adb8805af",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "teacher_id": null,
+      "assessment_id": "570cce8e-74b8-4ae0-ba6b-565fbefbeb36",
+      "student_id": "829a0379-90aa-4d8d-801d-93c39fb21119",
+      "marks": "36.00",
+      "status": "draft",
+      "submitted_by": "82124e0c-b2b3-47b8-8023-4d9fa8a51f3d",
+      "submitted_at": "2026-07-12T16:03:52.559Z",
+      "verified_by": null,
+      "verified_at": null,
+      "approved_by": null,
+      "approved_at": null,
+      "head_approved_by": null,
+      "head_approved_at": null,
+      "is_locked": false,
+      "unlocked_by": null,
+      "unlocked_at": null,
+      "competency_id": null
+    }
+  ],
+  "attendance": [
+    {
+      "id": "7f6e4316-773a-4b82-9080-121a671637e9",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "student_id": "ecf91b88-b208-4103-a68a-dfb9c7efc8b2",
+      "teacher_id": null,
+      "class_id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "term_id": "8cf3b837-acec-4cad-94b2-4604b77fdecf",
+      "subject_id": "086d5c8c-b930-451d-8e99-a4d19375992d",
+      "attendance_date": "2026-07-14T22:00:00.000Z",
+      "status": "EXCUSED",
+      "created_at": "2026-07-12T05:35:31.280Z"
+    },
+    {
+      "id": "751c99b6-4db1-4361-9e82-8926815aa38b",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "student_id": "ecf91b88-b208-4103-a68a-dfb9c7efc8b2",
+      "teacher_id": null,
+      "class_id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "term_id": "8cf3b837-acec-4cad-94b2-4604b77fdecf",
+      "subject_id": "086d5c8c-b930-451d-8e99-a4d19375992d",
+      "attendance_date": "2026-07-12T22:00:00.000Z",
+      "status": "SICK",
+      "created_at": "2026-07-12T16:02:30.009Z"
+    },
+    {
+      "id": "4d32bbc3-6ff8-4750-9671-02ea68bd338d",
+      "trade_id": "e720c35a-868e-41b1-aa7e-835f3b5e403d",
+      "student_id": "ecf91b88-b208-4103-a68a-dfb9c7efc8b2",
+      "teacher_id": null,
+      "class_id": "29cffd47-6e1e-4ead-b89c-c54cd272cf08",
+      "term_id": "8cf3b837-acec-4cad-94b2-4604b77fdecf",
+      "subject_id": "086d5c8c-b930-451d-8e99-a4d19375992d",
+      "attendance_date": "2026-06-30T22:00:00.000Z",
+      "status": "LATE",
+      "created_at": "2026-07-12T16:03:15.509Z"
+    }
+  ]
+}

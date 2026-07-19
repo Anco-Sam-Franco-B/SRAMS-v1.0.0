@@ -1,19 +1,20 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Navigate, Outlet } from 'react-router-dom';
+import useAuthStore from '../store/authStore';
 
-const ProtectedRoute = () => {
+export default function ProtectedRoute() {
+  const { user, loading } = useAuthStore();
 
-    const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+      </div>
+    );
+  }
 
-    if (loading) {
-        return <div className="flex h-screen items-center justify-center">Loading...</div>;
-    }
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
-
-    return <Outlet />;
-};
-
-export default ProtectedRoute;
+  return <Outlet />;
+}

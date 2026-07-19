@@ -3,14 +3,11 @@ import { loadEmailTemplate } from "../utils/emailTemplate.js";
 
 
 export async function sendEmail({
-
 to,
 subject,
 template,
 data
-
 }){
-
 
 const html =
 await loadEmailTemplate(
@@ -18,19 +15,12 @@ await loadEmailTemplate(
     data
 );
 
-
-
 await transporter.sendMail({
-
 from:
 process.env.SMTP_FROM,
-
 to,
-
 subject,
-
 html
-
 });
 
 

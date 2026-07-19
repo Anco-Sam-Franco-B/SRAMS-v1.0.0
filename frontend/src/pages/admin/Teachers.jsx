@@ -45,12 +45,12 @@ export default function Teachers() {
     const fetchData = async () => {
         try {
             const [techRes, tradesRes, subRes, classRes, allocRes, usersRes] = await Promise.all([
-                api.get('/data/teachers'),
-                api.get('/data/trade'),
-                api.get('/data/subjects'),
-                api.get('/data/classes'),
-                api.get('/data/teacher_subjects'),
-                api.get('/data/users')
+                api.get('/teachers'),
+                api.get('/trades'),
+                api.get('/subjects'),
+                api.get('/classes'),
+                api.get('/teacher-subjects'),
+                api.get('/users')
             ]);
             setTeachers(techRes.data.data || []);
             setTrades(tradesRes.data.data || []);
@@ -95,7 +95,7 @@ export default function Teachers() {
             if (!payload.trade_id) delete payload.trade_id;
             if (!payload.user_id) delete payload.user_id;
             
-            await api.post('/data/teachers', payload);
+            await api.post('/teachers', payload);
             toast.success("Teacher added successfully");
             setIsAddTeacherModal(false);
             fetchData();
@@ -110,7 +110,7 @@ export default function Teachers() {
     const handleDeleteTeacher = async (teacherId) => {
         if (!window.confirm('Delete this teacher? This action cannot be undone.')) return;
         try {
-            await api.delete(`/data/teachers/${teacherId}`);
+            await api.delete(`/teachers/${teacherId}`);
             toast.success("Teacher deleted successfully");
             fetchData();
         } catch (error) {
@@ -123,7 +123,7 @@ export default function Teachers() {
         e.preventDefault();
         setSaving(true);
         try {
-            await api.put(`/data/teachers/${editingTeacher.id}`, editTeacherForm);
+            await api.put(`/teachers/${editingTeacher.id}`, editTeacherForm);
             toast.success("Teacher updated successfully");
             setIsEditModal(false);
             fetchData();
@@ -138,7 +138,7 @@ export default function Teachers() {
     const handleUpdatePrimaryTrade = async () => {
         setSaving(true);
         try {
-            await api.put(`/data/teachers/${selectedTeacher.id}`, { trade_id: primaryTrade });
+            await api.put(`/teachers/${selectedTeacher.id}`, { trade_id: primaryTrade });
             fetchData();
             toast.success("Primary trade updated successfully!");
         } catch (error) {
@@ -149,15 +149,15 @@ export default function Teachers() {
         }
     };
 
-    const handleDeleteAllocation = async (allocationId) => {
+    const handleDeleteAllocation = async (allocation) => {
         if (!window.confirm('Delete this allocation?')) return;
         try {
-            await api.delete(`/data/teacher_subjects/${allocationId}`);
+            await api.delete(`/teacher-subjects/${allocation.teacher_id}/${allocation.subject_id}/${allocation.class_id}`);
             fetchData();
             toast.success("Allocation deleted successfully");
         } catch (error) {
             console.error("Error deleting allocation", error);
-            toast.error("Failed to delete allocation");
+            toast.error(error.response?.data?.error || "Failed to delete allocation");
         }
     };
 
@@ -165,7 +165,7 @@ export default function Teachers() {
         e.preventDefault();
         setSaving(true);
         try {
-            await api.post('/data/teacher_subjects', {
+            await api.post('/teacher-subjects', {
                 teacher_id: selectedTeacher.id,
                 trade_id: allocationForm.trade_id,
                 class_id: allocationForm.class_id,
@@ -421,7 +421,7 @@ export default function Teachers() {
                                                             <td className="font-medium px-2 py-2">{cls?.name || 'N/A'} {cls?.level ? `(${cls.level})` : ''}</td>
                                                             <td className='px-2 py-2'>{sub?.name || 'N/A'}</td>
                                                             <td className="px-2 py-2">
-                                                                <button onClick={() => handleDeleteAllocation(alloc.id)} className="btn btn-ghost btn-xs text-error"><Trash2 className="size-4 text-red-600" /></button>
+                                                                <button onClick={() => handleDeleteAllocation(alloc)} className="btn btn-ghost btn-xs text-error"><Trash2 className="size-4 text-red-600" /></button>
                                                             </td>
                                                         </tr>
                                                     )

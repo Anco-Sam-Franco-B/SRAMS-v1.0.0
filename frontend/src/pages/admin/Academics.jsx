@@ -21,7 +21,7 @@ export default function Academics() {
 
     const fetchYears = async () => {
         try {
-            const response = await api.get('/data/academic_years');
+            const response = await api.get('/academic-years');
             setYears(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch academic years", error);
@@ -70,7 +70,7 @@ export default function Academics() {
         e.preventDefault();
         setSubmitting(true);
         try {
-            await api.post('/data/academic_years', formData);
+            await api.post('/academic-years', formData);
             toast.success("Academic year created successfully");
             closeModal();
             fetchYears();
@@ -86,7 +86,7 @@ export default function Academics() {
         e.preventDefault();
         setSubmitting(true);
         try {
-            await api.put(`/data/academic_years/${editingId}`, formData);
+            await api.put(`/academic-years/${editingId}`, formData);
             toast.success("Academic year updated successfully");
             closeModal();
             fetchYears();
@@ -101,7 +101,7 @@ export default function Academics() {
     const handleDeleteYear = async (id) => {
         if (!window.confirm('Are you sure you want to delete this academic year?')) return;
         try {
-            await api.delete(`/data/academic_years/${id}`);
+            await api.delete(`/academic-years/${id}`);
             toast.success("Academic year deleted successfully");
             fetchYears();
         } catch (error) {

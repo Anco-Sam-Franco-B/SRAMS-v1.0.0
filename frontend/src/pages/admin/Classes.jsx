@@ -22,7 +22,7 @@ export default function Classes() {
 
     const fetchClasses = async () => {
         try {
-            const response = await api.get('/data/classes');
+            const response = await api.get('/classes');
             setClasses(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch classes", error);
@@ -34,7 +34,7 @@ export default function Classes() {
 
     const fetchTrades = async () => {
         try {
-            const response = await api.get('/data/trade');
+            const response = await api.get('/trades');
             setTrades(response.data.data || []);
         } catch (error) {
             console.error("Failed to fetch trades", error);
@@ -84,7 +84,7 @@ export default function Classes() {
             if (!payload.trade_id) delete payload.trade_id;
             if (!payload.capacity) delete payload.capacity;
             
-            await api.post('/data/classes', payload);
+            await api.post('/classes', payload);
             toast.success("Class created successfully");
             closeModal();
             fetchClasses();
@@ -104,7 +104,7 @@ export default function Classes() {
             if (!payload.trade_id) delete payload.trade_id;
             if (!payload.capacity) delete payload.capacity;
             
-            await api.put(`/data/classes/${editingId}`, payload);
+            await api.put(`/classes/${editingId}`, payload);
             toast.success("Class updated successfully");
             closeModal();
             fetchClasses();
@@ -119,7 +119,7 @@ export default function Classes() {
     const handleDeleteClass = async (id) => {
         if (!window.confirm('Are you sure you want to delete this class?')) return;
         try {
-            await api.delete(`/data/classes/${id}`);
+            await api.delete(`/classes/${id}`);
             toast.success("Class deleted successfully");
             fetchClasses();
         } catch (error) {

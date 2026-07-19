@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff, GraduationCap, LoaderPinwheelIcon } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, GraduationCap, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
-import { useAuth } from "../../context/AuthContext";
+import useAuthStore from "../../store/authStore";
 
 
 export default function Signup() {
   const navigate = useNavigate();
-  const { register } = useAuth();
+  const { register } = useAuthStore();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ fname: "", lname: "", email: "", password: "", confirmPassword: "" });
@@ -65,7 +65,7 @@ export default function Signup() {
             <div><label className="block text-sm font-medium mb-2">Confirm Password</label><div className="flex items-center border rounded-xl px-4 py-3"><Lock size={20} className="text-slate-400" /><input className="ml-3 w-full outline-none" type={show ? "text" : "password"} name="confirmPassword" value={form.confirmPassword} onChange={change} /></div></div>
              <button disabled={loading}
                 className="w-full flex items-center gap-2 bg-blue-600 justify-center hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl py-3 font-semibold transition">
-                {loading ? (<><LoaderPinwheelIcon className="size-5 animate-spin" /> Registering..</>) : "Register"}
+                {loading ? (<><Loader2 className="size-5 animate-spin" /> Registering..</>) : "Register"}
               </button>
               </form>
           <p className="text-center mt-6">Already have an account? <button onClick={() => navigate("/login")} className="text-blue-600 font-semibold">Sign In</button></p>
